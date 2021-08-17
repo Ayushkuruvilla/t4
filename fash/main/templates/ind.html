@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <section id="landing">
+      <h1 class="h">Welcome to Fashionista</h1>
+      <p>
+        Get the wardrobe you love.
+      </p>
+    </section>
+
+
+
+    <section id="choose">
+      <h1 class="mt-2">Choose an image</h1>
+      <p id="myup">
+        <div class="contain">
+          <div class="wrapper">
+            <div class="image">
+              <img src="" id="HideImg" alt="" onerror='this.style.display = "none"' />
+            </div>
+            <div class="content">
+              <div class="icon">
+                <i class="fas fa-cloud-upload-alt"></i>
+              </div>
+              <div class="text">
+                No file chosen, yet!
+              </div>
+            </div>
+            <div id="cancel-btn">
+              <i class="fas fa-times"></i>
+            </div>
+            <div class="file-name">
+              File name here
+            </div>
+          </div>
+          <button onclick="defaultBtnActive()" id="custom-btn">Upload a file</button>
+          <input id="default-btn" type="file" hidden>
+        </div>
+
+      </p>      
+      <div class="row mb-2">
+        <div class="col-lg-3" style="padding-right:10px;"><img src="{% static '/images/a.jpg' %}" width="200" height="250" /></div>
+        <div class="col-lg-3" style="padding-right:10px;"><img src="{% static '/images/b.jpg' %}" width="200" height="250" /></div>
+        <div class="col-lg-3" style="padding-right:10px;"><img src="{% static '/images/c.jpg' %}" width="200" height="250" /></div>
+        <div class="col-lg-3" style="padding-right:10px;"><img src="{% static '/images/e.jpeg' %}" width="200" height="250" /></div>
+      </div>                    
+    </section>
+
+
+    <section id="predictions">
+      <h1 class="h">Your predictions are</h1>
+      <p>
+        <div class="bs-example">
+          <span class="icon-input-btn">
+            <i class="fas fa-tshirt fa-xs" style="color:#000103;"></i>
+            <input type="submit" class="btn btn-primary btn-sm" value="Apparel">
+          </span>
+          <span class="icon-input-btn" style="color:#000103;">
+            <i class="fas fa-fill fa-xs"></i>
+            <input type="submit" class="btn btn-primary btn-sm" value="Color">
+          </span>
+          <span class="icon-input-btn">
+            <i class="fas fa-copyright fa-xs" style="color:#000103;"></i>
+            <input type="submit" class="btn btn-primary btn-sm" value="Brand">
+          </span>
+          <span class="icon-input-btn">
+            <input type="submi" class="btn btn-primary btn-sm" value="Search">
+          </span>
+        </div>
+      </p>
+    </section>
+
+
+    <section id="tags" class="text-center">
+      <h1 class="mt-5">Tags generated</h1>
+      <p>
+        Top links for the image you chose, Happy shopping!
+      </p>
+      <ul class="list-group">
+        <li class="list-group-item bg-dark text-white" aria-current="true"><a href="https://www.myntra.com/shirts/highlander/highlander-men-white-and-black-slim-fit-striped-casual-shirt/11899516/buy">https://www.myntra.com/shirts/highlander/highlander-men-white-and-black-slim-fit-striped-casual-shirt/11899516/buy</a></li>
+        <li class="list-group-item bg-dark text-white"><a href="https://www.myntra.com/shirts/highlander/highlander-men-white--blue-slim-fit-printed-casual-shirt/11964920/buy">https://www.myntra.com/shirts/highlander/highlander-men-white--blue-slim-fit-printed-casual-shirt/11964920/buy</a></li>
+        <li class="list-group-item bg-dark text-white"><a href="https://www.myntra.com/shirts/bene-kleed/bene-kleed-men-off-white--blue-slim-fit-printed-casual-shirt/7189947/buy">https://www.myntra.com/shirts/bene-kleed/bene-kleed-men-off-white--blue-slim-fit-printed-casual-shirt/7189947/buy</a></li>
+        <li class="list-group-item bg-dark text-white"><a href="https://www.myntra.com/shirts/mr-bowerbird/mr-bowerbird-men-made-in-india-natural-dyed-hand-block-print-together-shirt/13316300/buy">https://www.myntra.com/shirts/mr-bowerbird/mr-bowerbird-men-made-in-india-natural-dyed-hand-block-print-together-shirt/13316300/buy</a></li>
+        <li class="list-group-item bg-dark text-white"><a href="https://www.myntra.com/shirts/highlander/highlander-men-white--navy-blue-slim-fit-striped-casual-shirt/10863452/buy">https://www.myntra.com/shirts/highlander/highlander-men-white--navy-blue-slim-fit-striped-casual-shirt/10863452/buy</a></li>
+      </ul>
+    </section>
+  
+    {% endblock %}
