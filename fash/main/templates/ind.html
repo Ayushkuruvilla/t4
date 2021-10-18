@@ -32,7 +32,7 @@
           </div>
         </div>
       </div>
-      <button id="custom-btn" type="button" class="btn btn-secondary m-2" onclick="defaultBtnActive()">Upload an Image</button>
+      <button id="custom-btn" class="btn btn-secondary m-2" onclick="defaultBtnActive()">Upload an Image</button>
       <input id="default-btn" type="file" hidden>
       <form method="post" action="pyfun">
         <div class="d-grid gap-2 m-1">
@@ -42,26 +42,25 @@
   </div>
   <div class="display-area">
     <div class="cards-wrapper">
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class=" card"><img src="{% static '/images/c.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/c.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/b.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
 
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)" /></div>
-      <div class=" card"><img src="{% static '/images/c.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
-      <div class="card"><img src="{% static '/images/c.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
-      <div class="card"><img src="{% static '/images/b.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/b.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/d.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
 
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
-      <div class="card"><img src="{% static '/images/b.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
-      <div class="card"><img src="{% static '/images/d.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
 
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
-
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
     </div>
   </div>
 
@@ -111,8 +110,41 @@
           //       now set the active dot number to the clicked dot;
           activeDotNum = clickedDotNum;
         }
-
       });
+    });
+
+    const wrapper = document.querySelector(".wrapper");
+    const fileName = document.querySelector(".file-name");
+    const defaultBtn = document.querySelector("#default-btn");
+    const customBtn = document.querySelector("#custom-btn");
+    const cancelBtn = document.querySelector("#cancel-btn i");
+    const img = document.querySelector("img");
+    let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
+
+    function defaultBtnActive() {
+      defaultBtn.click();
+    }
+
+    defaultBtn.addEventListener("change", function() {
+      document.getElementById("HideImg").style.display = "inline";
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function() {
+          const result = reader.result;
+          img.src = result;
+          wrapper.classList.add("active");
+        }
+        cancelBtn.addEventListener("click", function() {
+          img.src = "";
+          wrapper.classList.remove("active");
+        })
+        reader.readAsDataURL(file);
+      }
+      if (this.value) {
+        let valueStore = this.value.match(regExp);
+        fileName.textContent = valueStore;
+      }
     });
 
     function swap_image(source_img) {
