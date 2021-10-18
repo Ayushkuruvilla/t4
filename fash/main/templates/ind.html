@@ -2,54 +2,123 @@
 {% load static %}
 {% block content %}
 
-    <section id="landing">
-      <h1 class="h">Welcome to Fashionista</h1>
-      <p>
-        Get the wardrobe you love.
-      </p>
-    </section>
-
-
-
-    <section id="choose">
-      <h1 class="mt-2">Choose an image</h1>
-      <p id="myup">
-        <div class="contain">
-          <div class="wrapper">
-            <div class="image">
-              <img src="" id="HideImg" alt="" onerror='this.style.display = "none"' />
+<section id="landing">
+  <h1 class="h">Welcome to Fashionista</h1>
+  <p>
+    Get the wardrobe you love.
+  </p>
+</section>
+<section id="choose">
+  <div class="container">
+    <div id="myup" class="rounded mx-auto d-block">
+      <div class="contain">
+        <div class="wrapper">
+          <div class="image">
+            <img src="" id="HideImg" alt="" onerror='this.style.display = "none"' />
+          </div>
+          <div class="content" id="choosen_one">
+            <div class="icon">
+              <i class="fas fa-cloud-upload-alt"></i>
             </div>
-            <div class="content">
-              <div class="icon">
-                <i class="fas fa-cloud-upload-alt"></i>
-              </div>
-              <div class="text">
-                No file chosen, yet!
-              </div>
-            </div>
-            <div id="cancel-btn">
-              <i class="fas fa-times"></i>
-            </div>
-            <div class="file-name">
-              File name here
+            <div class="text">
+              No file chosen, yet!
             </div>
           </div>
-          <button onclick="defaultBtnActive()" id="custom-btn">Upload a file</button>
-          <input id="default-btn" type="file" hidden>
-          <form method="post" action="pyfun">
-            
-            <button type="submit" name="fun">Run script</button>
-          </form>
+          <div id="cancel-btn">
+            <i class="fas fa-times"></i>
+          </div>
+          <div class="file-name">
+            File name here
+          </div>
         </div>
+      </div>
+      <button id="custom-btn" type="button" class="btn btn-secondary m-2" onclick="defaultBtnActive()">Upload an Image</button>
+      <input id="default-btn" type="file" hidden>
+      <form method="post" action="pyfun">
+        <div class="d-grid gap-2 m-1">
+          <button class="btn btn-primary" type="submit" name="fun">Run</button>
+      </form>
+    </div>
+  </div>
+  <div class="display-area">
+    <div class="cards-wrapper">
 
-      </p>      
-      <div class="row mb-2">
-        <div class="col-lg-3" style="padding-right:10px;"><img src="{% static '/images/a.jpg' %}" width="200" height="250" /></div>
-        <div class="col-lg-3" style="padding-right:10px;"><img src="{% static '/images/b.jpg' %}" width="200" height="250" /></div>
-        <div class="col-lg-3" style="padding-right:10px;"><img src="{% static '/images/c.jpg' %}" width="200" height="250" /></div>
-        <div class="col-lg-3" style="padding-right:10px;"><img src="{% static '/images/e.jpeg' %}" width="200" height="250" /></div>
-      </div>                    
-    </section>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)" /></div>
+      <div class=" card"><img src="{% static '/images/c.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/c.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/b.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
 
-  
-    {% endblock %}
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/b.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/d.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick="swap_image(this.src)"></div>
+    </div>
+  </div>
+
+  <div class="dots-wrapper">
+    <button class="dot active"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+  </div>
+  <script>
+    // In HTML, .display-area has the width of 4 cards = 880px. Each card is 200px width and margin set to 10px.
+    // .display-area has a .cards-wrapper which contains all the cards. .cards-wrapper is set to display flex.
+    // .display-area has overflow hidden to hide the portion of cards-wrapper which extends beyond the container's width.
+
+    const wrapper = document.querySelector('.cards-wrapper');
+    // console.log(wrapper.clientWidth);
+
+    // grab the dots
+    const dots = document.querySelectorAll('.dot');
+    // the default active dot num which is array[0]
+    let activeDotNum = 0;
+
+    dots.forEach((dot, idx) => {
+      //   number each dot according to array index
+      dot.setAttribute('data-num', idx);
+
+      //   add a click event listener to each dot
+      dot.addEventListener('click', (e) => {
+
+        let clickedDotNum = e.target.dataset.num;
+        // console.log(clickedDotNum);
+        //     if the dot clicked is already active, then do nothing
+        if (clickedDotNum == activeDotNum) {
+          // console.log('active');
+          return;
+        } else {
+          // console.log('not active');
+          // shift the wrapper
+          let displayArea = wrapper.parentElement.clientWidth;
+          // let pixels = -wrapper.clientWidth * clickedDotNum;
+          let pixels = -displayArea * clickedDotNum
+          wrapper.style.transform = 'translateX(' + pixels + 'px)';
+          //       remove the active class from the active dot
+          dots[activeDotNum].classList.remove('active');
+          //       add the active class to the clicked dot
+          dots[clickedDotNum].classList.add('active');
+          //       now set the active dot number to the clicked dot;
+          activeDotNum = clickedDotNum;
+        }
+
+      });
+    });
+
+    function swap_image(source_img) {
+      console.log(source_img)
+      document.getElementById('choosen_one').innerHTML = "<img src=" + source_img + " />"
+    }
+  </script>
+</section>
+{% endblock %}
