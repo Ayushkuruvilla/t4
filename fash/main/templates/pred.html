@@ -7,6 +7,22 @@
     <form action="pred" method="post">
     <p>
     <br><br>
+    <h2>Gender</h2>
+    <div class="btn-group">
+      <input
+type="radio"
+class="btn-check"
+name="gender"
+id="gender"
+autocomplete="off"
+checked
+/>      
+    <input type="radio" class="btn-check" name="gender" id="male" value="male" autocomplete="off" />
+    <label class="btn btn-primary" for="male">Male</label>
+    <input type="radio" class="btn-check" name="gender" id="female" value="female" autocomplete="off" />
+    <label class="btn btn-primary" for="female">Female</label>
+    </div>
+    <br><br>
       <h2>Major Classes</h2>
       <div class="btn-group">
         <input
@@ -16,7 +32,7 @@
   id="option1"
   autocomplete="off"
   checked
-/>
+/>  
         {% for sing in major %}
             <input type="radio" class="btn-check" name="options1" id="{{sing}}" value="{{sing}}" autocomplete="off" />
             <label class="btn btn-primary" for="{{sing}}">{{ sing }}</label>
