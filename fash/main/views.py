@@ -25,7 +25,7 @@ def test(request):
 def predict(request):
     if request.method=="POST":
         print(request.POST['url'])
-        
+
         return render(request,"pred.html")
 
 
