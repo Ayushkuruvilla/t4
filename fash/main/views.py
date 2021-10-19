@@ -31,7 +31,7 @@ def pyfun(request):
  'collarless neckline',
  'v-neck neckline',
  'wrist-length sleeve']})
-    
+
 def pred(request):
     if request.method=="POST":
         print("Im here")
@@ -46,7 +46,7 @@ def pred(request):
 def tags(request):
     if request.method=="POST":
         print(request.POST['options1'])
-    return render(None,'tags.html')    
+    return render(None,'tags.html')
 
 
 def v1(request):
@@ -58,7 +58,7 @@ from bs4 import BeautifulSoup
 import os,json
 
 def webcrawler(m):
-    label_description_path=r'C:\Users\91948\proj\label_descriptions.json'
+    label_description_path=r'/home/jigyas15/dataset-iMaterialist/raw/label_descriptions.json'
     with open(label_description_path, 'r') as file:
         label_desc = json.load(file)
 
