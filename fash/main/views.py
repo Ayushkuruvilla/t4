@@ -16,6 +16,7 @@ def test(request):
             form.save()
             img_obj=form.instance
             print(request.POST)
+            print(img_obj.image.url)
             return render(request,'test.html',{'form':form,'img_obj':img_obj})
     else:
         form=ImageForm()
