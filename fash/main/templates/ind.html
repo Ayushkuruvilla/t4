@@ -33,9 +33,12 @@
           </div>
         </div>
       </div>
-      <button id="custom-btn" class="btn btn-secondary m-2" onclick="defaultBtnActive()">Upload an Image</button>
-      <input id="default-btn" type="file" hidden>
-      <form method="post" action="pyfun">
+     
+        <button id="custom-btn" class="btn btn-secondary m-2" onclick="defaultBtnActive()">Upload an Image</button>
+        <form method="post" action="pyfun" enctype="multipart/form-data">
+        {{form.as_p}}
+        <input id="default-btn" type="file" hidden>
+
         <div class="d-grid gap-2 m-1">
           <button class="btn btn-primary" type="submit" name="fun">Run</button>
       </form>
@@ -43,25 +46,41 @@
   </div>
   <div class="display-area">
     <div class="cards-wrapper">
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
-      <div class=" card"><img src="{% static '/images/c.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
-      <div class="card"><img src="{% static '/images/c.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
-      <div class="card"><img src="{% static '/images/b.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class=" card"><img src="{% static '/images/c.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/c.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/b.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
 
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
-      <div class="card"><img src="{% static '/images/b.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
-      <div class="card"><img src="{% static '/images/d.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/b.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/d.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
 
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
 
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
-      <div class="card"><img src="{% static '/images/a.jpg' %}" alt="" onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
+      <div class="card"><img src="{% static '/images/a.jpg' %}" alt=""
+          onclick='document.getElementById("choosen_one").innerHTML = "<img src=" + this.src + "/>"'></div>
     </div>
   </div>
 
@@ -126,17 +145,17 @@
       defaultBtn.click();
     }
 
-    defaultBtn.addEventListener("change", function() {
+    defaultBtn.addEventListener("change", function () {
       document.getElementById("HideImg").style.display = "inline";
       const file = this.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = function() {
+        reader.onload = function () {
           const result = reader.result;
           img.src = result;
           wrapper.classList.add("active");
         }
-        cancelBtn.addEventListener("click", function() {
+        cancelBtn.addEventListener("click", function () {
           img.src = "";
           wrapper.classList.remove("active");
         })

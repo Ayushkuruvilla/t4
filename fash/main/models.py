@@ -1,8 +1,9 @@
 from django.db import models
 
-class Snippet(models.Model):
-    name = models.CharField(max_length=100)
-    body = models.TextField()
+class Image(models.Model):
+    title = models.CharField(max_length=200)
+    image=models.ImageField(upload_to='images')
 
-    def __str__(self):
-        return self.name
+    class Meta:
+        db_table="images"
+

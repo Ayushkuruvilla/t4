@@ -1,13 +1,25 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.urls import reverse
-from .forms import ContactForm, SnippetForm
+from .forms import ImageForm
 import warnings
 warnings.filterwarnings("ignore")
 # Create your views here.
 
 def index(request):
     return render(None,'ind.html')
+
+def test(request):
+    if request.method=="POST":
+        form=ImageForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            img_obj=form.instance
+            print(request.POST)
+            return render(request,'test.html',{'form':form,'img_obj':img_obj})
+    else:
+        form=ImageForm()
+    return render(request,'test.html',{'form':form})
 
 def pyfun(request):
     print("Hello")
@@ -25,7 +37,7 @@ def pred(request):
         m=[]
         m.append(request.POST['options1'])
         m.extend(request.POST.getlist('options2'))
-        #print(request.POST)
+        print(request.POST)
         ans=webcrawler(m)
         return render(request,"tags.html",{'links':ans})
     return render(None,'pred.html')
@@ -38,35 +50,6 @@ def tags(request):
 
 def v1(request):
     return HttpResponse("<h1>Hello</h1>")
-
-
-def contact(request):
-
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-
-            print(name)
-
-    else:
-        form = ContactForm()
-
-    return render(request, 'form.html', {'form': form})
-
-
-def snippet_detail(request):
-
-    if request.method == 'POST':
-        form = SnippetForm(request.POST)
-        if form.is_valid():
-            form.save()
-
-
-    form = SnippetForm()
-    return render(request, 'form.html', {'form': form})
 
 from requests_html import HTMLSession
 import json
