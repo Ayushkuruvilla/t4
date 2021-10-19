@@ -154,7 +154,13 @@
     </form>
     {% if img_obj %}
     <h3>Successfully uploaded</h3>
-    <img src="{{ img_obj.image.url }}" alt="connect" style="max-height:300px;">{%endif %}
+    <img src="{{ img_obj.image.url }}" alt="connect" style="max-height:300px;">
+    <br />
+    <form method="post" action="predict">
+      <input type="hidden" id="url" name="url" value="{{ img_obj.image.url }}">
+      <button class="btn btn-secondary mt-3" type="submit">Predict</button>
+      {% endif %}
+    </form>
   </div>
 </div>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">

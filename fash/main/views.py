@@ -17,10 +17,17 @@ def test(request):
             img_obj=form.instance
             print(request.POST)
             print(img_obj.image.url)
-            return render(request,'test.html',{'form':form,'img_obj':img_obj})
+            return render(request,'test.html',{'form':form,'img_obj':img_obj,'alert':"success"})
     else:
         form=ImageForm()
     return render(request,'test.html',{'form':form})
+
+def predict(request):
+    if request.method=="POST":
+        print(request.POST['url'])
+
+        return render(request,"pred.html")
+
 
 def pyfun(request):
     print("Hello")

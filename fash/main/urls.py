@@ -10,7 +10,8 @@ path("test", views.test, name="test"),
 path("pred", views.pred, name="pred"),
 path("tags", views.tags, name="tags"),
 path("v1/", views.v1, name="view 1"),
-path("pyfun",views.pyfun)
+path("pyfun",views.pyfun),
+path("predict",views.predict)
 ]
 
 if settings.DEBUG:
