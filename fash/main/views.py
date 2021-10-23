@@ -4,6 +4,9 @@ from django.urls import reverse
 from .forms import ImageForm
 import warnings
 warnings.filterwarnings("ignore")
+import sys
+sys.path.append('/home/jigyas15/kaggle-imaterialist2020-model')
+from prediction import pre
 # Create your views here.
 
 def index(request):
@@ -25,7 +28,8 @@ def test(request):
 def predict(request):
     if request.method=="POST":
         print(request.POST['url'])
-
+        val=pre()
+        print(val)
         return render(request,"pred.html")
 
 
