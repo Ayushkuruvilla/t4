@@ -2,10 +2,18 @@
 {% load static %}
 {% block test %}
 <style>
+  .container {
+    display: flex;
+  }
+
+  .item {
+    background: #ce8888;
+    width: 50%;
+  }
+
   .cta-100 {
     margin-top: 100px;
     padding-left: 8%;
-    padding-top: 2%;
   }
 
   .col-md-4 {
@@ -24,10 +32,6 @@
 
   .bg-blue-ui {
     background-color: #708198 !important;
-  }
-
-  figure img {
-    width: 300px;
   }
 
   #blogCarousel {
@@ -71,7 +75,7 @@
   }
 
   .item-box-blog-image figure img {
-    width: 100%;
+    width: 300px;
     height: auto;
   }
 
@@ -144,25 +148,25 @@
     box-shadow: 0px 5px 15px inset #4d5f77;
   }
 </style>
-<div class="container">
-  <br /><br /><br /><br /><br />
-  <div class="shadow-lg p-3 m-10 bg-body rounded text-center">
+<br /><br /><br /><br /><br />
+<div class="container justify-content">
+  <div class="shadow-lg p-3 m-10 bg-body rounded text-center item">
     <h3 class="text-muted mb-4">Upload an image</h3>
     <form method="post" action="test" enctype="multipart/form-data">
       {{form.as_p}}
-      <button class="btn btn-secondary" type="submit">Upload</button>
-    </form>
-    {% if img_obj %}
-    <h3>Successfully uploaded</h3>
-    <img src="{{ img_obj.image.url }}" alt="connect" style="max-height:300px;">
-    <br />
-    <form method="post" action="predict">
-      <input type="hidden" id="url" name="url" value="{{ img_obj.image.url }}">
-      <button class="btn btn-secondary mt-3" type="submit">Predict</button>
-      {% endif %}
+      <button class="btn btn-secondary" type="submit" onclick="display_pred()">Upload</button>
     </form>
   </div>
+  <div class="shadow-lg p-3 m-10 bg-body rounded text-center item">
+    {% if img_obj %}
+    <img src="{{ img_obj.image.url }}" alt="connect">
+    {% endif %}
+  </div>
 </div>
+<form method="post" action="predict">
+  <input type="hidden" id="url" name="url" value="{{ img_obj.image.url }}">
+  <button class="btn btn-secondary btn-lg btn-block mt-3" id="predict_btn" type="submit">Predict</button>
+</form>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -239,6 +243,4 @@
     </div>
   </div>
 </div>
-</div>
-
 {% endblock %}
